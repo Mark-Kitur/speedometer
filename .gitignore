@@ -4,4 +4,4 @@
 /oe-workdir
 /speedometer.egg-info/
 #
-__pycache__/
+speedometer/__pycache__
