@@ -1,0 +1,4 @@
+*.vscode
+/build
+/oe-logs
+/oe-workdir
