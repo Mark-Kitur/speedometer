@@ -1,6 +1,0 @@
-Metadata-Version: 2.4
-Name: speedometer
-Version: 0.1.0
-Summary: PyQt5 automotive dashboard
-Author-email: Mark Kitur <kiturmark@gmail.com>
-Requires-Python: >=3.10

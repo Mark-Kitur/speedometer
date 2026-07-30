@@ -1,2 +1,0 @@
-[console_scripts]
-speedometer = speedometer.__main__:main
