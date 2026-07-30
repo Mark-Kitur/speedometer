@@ -73,8 +73,8 @@ class Sticks(QWidget):
 
 
 
-# if __name__ == "__main__":
-#     app = QApplication(sys.argv)
-#     window = Sticks()
-#     window.show()
-#     sys.exit(app.exec())
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    window = Sticks()
+    window.show()
+    sys.exit(app.exec())

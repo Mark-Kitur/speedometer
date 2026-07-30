@@ -17,7 +17,7 @@ class DashboardIcon(QWidget):
         layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
         
         # Icon Label
-        self.icon_label = QLabel()
+        self.icon_label = QLabel(self)
         self.pixmap = QPixmap(icon_path)
         if not self.pixmap.isNull():
             self.icon_label.setPixmap(self.pixmap.scaled(72,72, Qt.AspectRatioMode.KeepAspectRatio))

@@ -28,7 +28,7 @@ class Dashboard(QMainWindow):
         self.speed_label.setStyleSheet("font-size: 20px; color: #00f0ff;") 
 
         # start serial reader
-        self.speed = 0
+        # self.speed = 0
         # self.serial_reader = SerialReader()
         # self.serial_reader.speed_received.connect(self.update_speed)
 
@@ -60,7 +60,7 @@ class Dashboard(QMainWindow):
         # color for outer arc
         painter.setPen(QPen(QColor(0, 100, 100), 10))
         painter.setBrush(QBrush(QColor(0, 100, 100, 100)))
-        painter.drawArc(50, 50, 300, 300, 210*16, -360 * 16)
+        painter.drawArc(50, 50, 300, 300, 210*16, -240 * 16)
 
         # set up gradient for speed display
         center_x = 200
@@ -76,7 +76,7 @@ class Dashboard(QMainWindow):
         pen.setBrush(gradient)
         painter.setPen(pen)
         painter.setBrush(Qt.BrushStyle.NoBrush)
-        painter.drawArc(70, 70, 260, 260, 210 * 16, -int(angle) * 16)
+        painter.drawArc(70, 70, 260, 260, 210 * 16, -int(angle *16))
         painter.end()
 
         # draw sticks
@@ -85,7 +85,7 @@ class Dashboard(QMainWindow):
 
     def update_speed(self): # add arg speed later
         rand_speed = random.randint(0,200)
-        self.speed = rand_speed
+        self.speed =rand_speed
         self.speed_label.setText(f"Speed: {self.speed:.0f}")
         self.update()  # Trigger repaint to update the speedometer
 
@@ -101,8 +101,10 @@ def map_speed_to_angle(speed: float):
     if speed > max_speed:
         return max_angle
     
-    return (speed - min_speed) / (max_speed - min_speed) * max_angle
+    see = (speed - min_speed) / (max_speed - min_speed) * max_angle
+    print(see)
 
+    return see
 
 app = QApplication(sys.argv)
 window = Dashboard()
