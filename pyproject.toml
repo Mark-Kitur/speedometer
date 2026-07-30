@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "speedometer"
+version = "0.1.0"
+description = "PyQt5 automotive dashboard"
+authors = [
+    { name = "Mark Kitur", email = "kiturmark@gmail.com" }
+]
+requires-python = ">=3.10"
+
+[tool.setuptools]
+packages = ["speedometer"]
+
+[tool.setuptools.package-data]
+speedometer = [
+    "*.ui",
+    "icons/*.png"
+]
+
+[project.scripts]
+spedo  = "speedometer.dashboard:main"
