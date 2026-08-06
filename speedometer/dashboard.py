@@ -5,10 +5,10 @@ from PyQt5.QtGui import QConicalGradient, QPainter, QColor, QPen, QBrush, QGradi
 from PyQt5.QtCore  import QTimer, Qt
 
 
-from arduino_data import SerialReader
-from stick_display import Sticks
-from display_symbols import DISP_ICON
-from fuel_tmp import Fuel_Temp
+from speedometer.arduino_data import SerialReader
+from speedometer.stick_display import Sticks
+from speedometer.display_symbols import DISP_ICON
+from speedometer.fuel_tmp import Fuel_Temp
 
 
 

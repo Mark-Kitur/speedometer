@@ -5,6 +5,10 @@ from PyQt5.QtCore import Qt, QTimer
 import sys
 import random  
 
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent
+ICON_DIR = BASE_DIR / "icons"
 
 class DashboardIcon(QWidget):
     """Reusable widget for each dashboard icon"""
@@ -18,7 +22,7 @@ class DashboardIcon(QWidget):
         
         # Icon Label
         self.icon_label = QLabel(self)
-        self.pixmap = QPixmap(icon_path)
+        self.pixmap = QPixmap(str(icon_path))
         if not self.pixmap.isNull():
             self.icon_label.setPixmap(self.pixmap.scaled(72,72, Qt.AspectRatioMode.KeepAspectRatio))
         else:
@@ -70,16 +74,16 @@ class DISP_ICON(QWidget):
         self.setWindowTitle("Dashboard")
 
         self.icons = {
-            'icons/abs.png': 'abs',
-            'icons/air-bag_13401736.png': 'airbag',
-            'icons/battery.png': 'bat',
-            'icons/check_engine.png': 'check eng',
-            'icons/door_open.png': 'door open',
-            "icons/head_lights.png": 'head lights',
-            'icons/oil-indicator_1633107.png': 'check oil',
-            'icons/seat_belt.png': 'belt',
-            'icons/streering_dis.png': 'streering',
-            'icons/tire-pressure_6380752.png': 'tire'
+            ICON_DIR / "abs.png": "abs",
+            ICON_DIR / "air-bag_13401736.png": "airbag",
+            ICON_DIR / "battery.png": "bat",
+            ICON_DIR / "check_engine.png": "check eng",
+            ICON_DIR / "door_open.png": "door open",
+            ICON_DIR / "head_lights.png": "head lights",
+            ICON_DIR / "oil-indicator_1633107.png": "check oil",
+            ICON_DIR / "seat_belt.png": "belt",
+            ICON_DIR / "streering_dis.png": "steering",
+            ICON_DIR / "tire-pressure_6380752.png": "tire",
         }
 
         self.active_widgets = {}

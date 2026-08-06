@@ -5,3 +5,5 @@
 /speedometer.egg-info/
 #
 speedometer/__pycache__
+
+play.py
