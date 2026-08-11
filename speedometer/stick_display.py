@@ -5,6 +5,7 @@ import sys, math
 from PyQt5.QtCore import Qt
 
 
+
 class Sticks(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -24,7 +25,7 @@ class Sticks(QWidget):
         # Draw speedometer arc
         painter.setPen(QPen(QColor(0, 100, 100), 10))
         painter.setBrush(QBrush(QColor(0, 100, 100, 100)))
-        painter.drawArc(50, 50, 300, 300, 210*16, -360 * 16)    
+        painter.drawArc(50, 50, 300, 300, 210*16, -240 * 16)    
 
         # drwa sticks
         painter.setPen(QPen(QColor(220,220,230), 5))

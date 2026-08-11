@@ -1,7 +1,7 @@
 import sys
 import random,math
 from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox, QLabel 
-from PyQt5.QtGui import QConicalGradient, QPainter, QColor, QPen, QBrush, QGradient
+from PyQt5.QtGui import QConicalGradient, QPainter, QColor, QPen, QBrush, QGradient, QPalette
 from PyQt5.QtCore  import QTimer, Qt
 
 
@@ -15,11 +15,16 @@ from speedometer.fuel_tmp import Fuel_Temp
 class Dashboard(QMainWindow):
     def __init__(self):
         super().__init__()
+        self.speed = 0
+
         self.setWindowTitle("Speedometer Dashboard")
         self.setGeometry(0, 0, 1700, 700)
-        self.grad = QGradient()
-        self.setStyleSheet("background-color: #121214;")
-        
+        # set background colour
+        palette =self.palette()
+        palette.setColor(self.palette().Window, QColor(30,30,30))
+        self.setPalette(palette)
+        self.setAutoFillBackground(True)
+                
        
 
         # display cureent speed 
@@ -28,7 +33,6 @@ class Dashboard(QMainWindow):
         self.speed_label.setStyleSheet("font-size: 20px; color: #00f0ff;") 
 
         # start serial reader
-        # self.speed = 0
         # self.serial_reader = SerialReader()
         # self.serial_reader.speed_received.connect(self.update_speed)
 
@@ -84,7 +88,7 @@ class Dashboard(QMainWindow):
 
 
     def update_speed(self): # add arg speed later
-        rand_speed = random.randint(0,200)
+        rand_speed = random.randint(180,200)
         self.speed =rand_speed
         self.speed_label.setText(f"Speed: {self.speed:.0f}")
         self.update()  # Trigger repaint to update the speedometer
@@ -102,7 +106,7 @@ def map_speed_to_angle(speed: float):
         return max_angle
     
     see = (speed - min_speed) / (max_speed - min_speed) * max_angle
-    print(see)
+
 
     return see
 

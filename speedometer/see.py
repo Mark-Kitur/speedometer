@@ -14,7 +14,7 @@ class See(QWidget):
         path = str('icons/abs.png')
         img = QPixmap('icons/abs.png')
         label.setPixmap(img)
-        print(path)
+        #print(path)
 
 
 if __name__ =="__main__":

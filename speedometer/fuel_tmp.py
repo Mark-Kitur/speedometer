@@ -18,7 +18,7 @@ class Fuel_Temp(QWidget):
         # start to simulate timer
         self.timer = QTimer()
         self.timer.timeout.connect(self.update_state)
-        self.timer.start(4000)
+        self.timer.start(1000)
 
         # Progress bar styled with modern flat design
         self.progress_bar = QProgressBar()
@@ -89,9 +89,9 @@ class Fuel_Temp(QWidget):
         painter.drawText(260, 155, "H") # Hot marker near Red segment
 
         # # Draw live numerical Temp value inside/below the cluster hub
-        # painter.setPen(QPen(QColor("#FFFFFF")))
-        # painter.setFont(QFont("Segoe UI", 16, QFont.Weight.Bold))
-        # painter.drawText(115, 290, f"TEMP: {self.temp}°")
+        painter.setPen(QPen(QColor("#FFFFFF")))
+        painter.setFont(QFont("Segoe UI", 16, QFont.Weight.Bold))
+        painter.drawText(125, 200, "TEMP")
 
         # draw needle pointer using original math formulations
         angle = math.radians(self.temp)
@@ -121,7 +121,7 @@ class Fuel_Temp(QWidget):
         self.progress_bar.setValue(fuel)
         self.fuel_val_label.setText(f"{fuel}/10") # Dynamic string label update
         
-        print(value_int, self.temp)
+        #print(value_int, self.temp)
         self.update()
 
 # app = QApplication(sys.argv)
