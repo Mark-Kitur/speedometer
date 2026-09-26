@@ -10,7 +10,7 @@ import random
 
 
 
-from speedometer.arduino_data import SerialReader
+#from speedometer.arduino_data import SerialReader
 from speedometer.stick_display import Sticks
 from speedometer.display_symbols import DISP_ICON
 from speedometer.fuel_tmp import Fuel_Temp
