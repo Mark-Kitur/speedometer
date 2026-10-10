@@ -6,6 +6,8 @@ import sys
 import random  
 
 from pathlib import Path
+import arduino_data
+
 
 BASE_DIR = Path(__file__).resolve().parent
 ICON_DIR = BASE_DIR / "icons"
@@ -14,6 +16,7 @@ class DashboardIcon(QWidget):
     """Reusable widget for each dashboard icon"""
     def __init__(self, icon_path, label_text):
         super().__init__()
+        
         self.is_active = False
         
         layout = QVBoxLayout()
@@ -108,12 +111,32 @@ class DISP_ICON(QWidget):
         self.setLayout(self.main_layout)
 
   
+
     def trigger_random_warnings(self):
-        """Randomly toggles the warning state of all registered icons"""
-        for name, icon_widget in self.active_widgets.items():
-           
-            random_state = random.choice([True, False])
-            icon_widget.trigger(random_state)
+        """Trigger dashboard warning icons from Arduino data."""
+        arduino_data.read_data()
+        car_values = arduino_data.car_values
+
+        warning_map = {
+            "abs": "abs",
+            "airbag": "airbag",
+            "bat": "battery",
+            "check eng": "checkEngine",
+            "door open": "doorOpen",
+            "head lights": "headLights",
+            "check oil": "oilLevel",
+            "belt": "seatBelt",
+            "steering": "sterringWheel",
+            "tire": "tirePressure",
+        }
+
+        for widget_name, data_key in warning_map.items():
+            value = car_values.get(data_key, 0)
+
+            # Non-zero means warning active
+            self.active_widgets[widget_name].trigger(value != 0)
+
+
 
 
 if __name__ == "__main__":

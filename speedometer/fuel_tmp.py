@@ -6,11 +6,14 @@ from PyQt5.QtWidgets import QWidget, QApplication, QMainWindow, QProgressBar, QH
 from PyQt5.QtGui import QPainter, QPen, QColor, QBrush, QFont
 from PyQt5.QtCore import QPoint, QTimer, Qt
 
+import arduino_data
+
+
 class Fuel_Temp(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setGeometry(0, 0, 600, 500)
-        self.temp = 25
+        self.temp = 0
         
         # Premium dark background style
         self.setStyleSheet("background-color: #121214;")
@@ -114,14 +117,17 @@ class Fuel_Temp(QWidget):
         painter.end()
 
     def update_state(self):
-        value_int = random.randint(0, 195)
-        self.temp = 195 - value_int
-        fuel = random.randint(0, 10)
-        
+        # value_int = random.randint(0, 195)
+        # self.temp = 195 - value_int
+        # fuel = random.randint(0, 10)
+
+        arduino_data.read_data()
+        self.temp =195 - int(arduino_data.car_values['temperature'])
+        self.temp 
+        fuel = arduino_data.car_values["fuelLevel"]
+
         self.progress_bar.setValue(fuel)
-        self.fuel_val_label.setText(f"{fuel}/10") # Dynamic string label update
-        
-        #print(value_int, self.temp)
+        self.fuel_val_label.setText(f"{fuel}/10") 
         self.update()
 
 # app = QApplication(sys.argv)

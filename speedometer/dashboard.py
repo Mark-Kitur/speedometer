@@ -5,7 +5,7 @@ from PyQt5.QtGui import QConicalGradient, QPainter, QColor, QPen, QBrush, QGradi
 from PyQt5.QtCore  import QTimer, Qt
 
 
-from speedometer.arduino_data import SerialReader
+import arduino_data
 from speedometer.stick_display import Sticks
 from speedometer.display_symbols import DISP_ICON
 from speedometer.fuel_tmp import Fuel_Temp
@@ -15,7 +15,6 @@ from speedometer.fuel_tmp import Fuel_Temp
 class Dashboard(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.speed = 0
 
         self.setWindowTitle("Speedometer Dashboard")
         self.setGeometry(0, 0, 1700, 700)
@@ -23,18 +22,17 @@ class Dashboard(QMainWindow):
         palette =self.palette()
         palette.setColor(self.palette().Window, QColor(30,30,30))
         self.setPalette(palette)
-        self.setAutoFillBackground(True)
-                
-       
+        self.setAutoFillBackground(True)      
+
+        # ini
+        self.speed = 0
 
         # display cureent speed 
         self.speed_label = QLabel(self)
         self.speed_label.setGeometry(150, 150, 200, 200)
         self.speed_label.setStyleSheet("font-size: 20px; color: #00f0ff;") 
 
-        # start serial reader
-        # self.serial_reader = SerialReader()
-        # self.serial_reader.speed_received.connect(self.update_speed)
+
 
         #====== I will begin random visualization before including arduino
         self.timer = QTimer()
@@ -88,8 +86,8 @@ class Dashboard(QMainWindow):
 
 
     def update_speed(self): # add arg speed later
-        rand_speed = random.randint(180,200)
-        self.speed =rand_speed
+        arduino_data.read_data()
+        self.speed = arduino_data.car_values["speed"]
         self.speed_label.setText(f"Speed: {self.speed:.0f}")
         self.update()  # Trigger repaint to update the speedometer
 
