@@ -6,7 +6,7 @@ import sys
 import random  
 
 from pathlib import Path
-import arduino_data
+import speedometer.arduino_data as ardu
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -114,8 +114,8 @@ class DISP_ICON(QWidget):
 
     def trigger_random_warnings(self):
         """Trigger dashboard warning icons from Arduino data."""
-        arduino_data.read_data()
-        car_values = arduino_data.car_values
+        #ardu.read_data()
+        car_values = ardu.car_values
 
         warning_map = {
             "abs": "abs",

@@ -5,7 +5,7 @@ from PyQt5.QtGui import QConicalGradient, QPainter, QColor, QPen, QBrush, QGradi
 from PyQt5.QtCore  import QTimer, Qt
 
 
-import arduino_data
+import speedometer.arduino_data as ardu
 from speedometer.stick_display import Sticks
 from speedometer.display_symbols import DISP_ICON
 from speedometer.fuel_tmp import Fuel_Temp
@@ -86,8 +86,8 @@ class Dashboard(QMainWindow):
 
 
     def update_speed(self): # add arg speed later
-        arduino_data.read_data()
-        self.speed = arduino_data.car_values["speed"]
+        ardu.read_data()
+        self.speed = ardu.car_values["speed"]
         self.speed_label.setText(f"Speed: {self.speed:.0f}")
         self.update()  # Trigger repaint to update the speedometer
 

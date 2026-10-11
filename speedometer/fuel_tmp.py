@@ -6,7 +6,7 @@ from PyQt5.QtWidgets import QWidget, QApplication, QMainWindow, QProgressBar, QH
 from PyQt5.QtGui import QPainter, QPen, QColor, QBrush, QFont
 from PyQt5.QtCore import QPoint, QTimer, Qt
 
-import arduino_data
+import speedometer.arduino_data as ardu
 
 
 class Fuel_Temp(QWidget):
@@ -121,10 +121,10 @@ class Fuel_Temp(QWidget):
         # self.temp = 195 - value_int
         # fuel = random.randint(0, 10)
 
-        arduino_data.read_data()
-        self.temp =195 - int(arduino_data.car_values['temperature'])
+        #ardu.read_data()
+        self.temp =195 - int(ardu.car_values['temperature'])
         self.temp 
-        fuel = arduino_data.car_values["fuelLevel"]
+        fuel = ardu.car_values["fuelLevel"]
 
         self.progress_bar.setValue(fuel)
         self.fuel_val_label.setText(f"{fuel}/10") 
