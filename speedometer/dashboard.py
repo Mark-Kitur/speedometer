@@ -34,10 +34,10 @@ class Dashboard(QMainWindow):
 
 
 
-        #====== I will begin random visualization before including arduino
+        #====== rreading data from arduino
         self.timer = QTimer()
         self.timer.timeout.connect(self.update_speed)
-        self.timer.start(1000) 
+        self.timer.start(50)  # read data every 50 msec
 
         self.icons = DISP_ICON(self)
         self.icons.setGeometry(500,50,600,500)

@@ -21,7 +21,7 @@ class Fuel_Temp(QWidget):
         # start to simulate timer
         self.timer = QTimer()
         self.timer.timeout.connect(self.update_state)
-        self.timer.start(1000)
+        self.timer.start(100) # 0.1 sec
 
         # Progress bar styled with modern flat design
         self.progress_bar = QProgressBar()

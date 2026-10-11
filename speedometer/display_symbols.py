@@ -95,7 +95,7 @@ class DISP_ICON(QWidget):
         # NEW: Timer to trigger random updates
         self.timer = QTimer()
         self.timer.timeout.connect(self.trigger_random_warnings)
-        self.timer.start(1000)  # Fires every 1.0 second
+        self.timer.start(100)  # Fires every 0.1 second
 
     def disp_icons(self):
         self.main_layout = QGridLayout(self)
